@@ -22,8 +22,9 @@ pipeline {
           }
         }
 
-        stages('build and test') {
-          stage('Build') {
+        stage('build and test') {
+          steps {
+            stage('Build') {
             steps {
               echo "hello from Build..."
               sleep time: 3, unit: 'SECONDS'
@@ -36,6 +37,7 @@ pipeline {
               sleep time: 3, unit: 'SECONDS'
               echo "completed testing."
             }
+          }
           }
         }
       }
