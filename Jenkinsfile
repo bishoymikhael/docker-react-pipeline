@@ -13,8 +13,7 @@ pipeline {
     }
 
     stage('Parallelize Build/test and SAST') {
-      steps {
-              parallel {
+      parallel {
         stage('SAST') {
           steps {
             echo "hello from SAST..."
@@ -23,7 +22,7 @@ pipeline {
           }
         }
 
-        stage('build and test') {
+        stages('build and test') {
           stage('Build') {
             steps {
               echo "hello from Build..."
@@ -39,7 +38,6 @@ pipeline {
             }
           }
         }
-      }
       }
     }
 
