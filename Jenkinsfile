@@ -23,7 +23,7 @@ pipeline {
         }
 
         stage('build and test') {
-          steps {
+          stages {
             stage('Build') {
             steps {
               echo "hello from Build..."
@@ -31,13 +31,13 @@ pipeline {
               echo "completed Build."
             }
           }
-          stage('unit test') {
-            steps {
-              echo "hello from test..."
-              sleep time: 3, unit: 'SECONDS'
-              echo "completed testing."
+            stage('unit test') {
+              steps {
+                echo "hello from test..."
+                sleep time: 3, unit: 'SECONDS'
+                echo "completed testing."
+              }
             }
-          }
           }
         }
       }
