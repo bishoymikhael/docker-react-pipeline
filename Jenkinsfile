@@ -12,15 +12,35 @@ pipeline {
       }
     }
 
+    stage('SAST') {
+      steps {
+        echo "hello from SAST..."
+        sleep time: 3, unit: 'SECONDS'
+        echo "completed SAST."
+      }
+    }
+
     stage('Build') {
       steps {
-        echo 'Running build..'
+        echo "hello from Build..."
+        sleep time: 3, unit: 'SECONDS'
+        echo "completed Build."
       }
     }
 
     stage('Package') {
       steps {
-        echo 'Packaging app...'
+        echo "hello from Package..."
+        sleep time: 5, unit: 'SECONDS'
+        echo "completed packaging."
+      }
+    }
+
+    stage('unit test') {
+      steps {
+        echo "hello from test..."
+        sleep time: 3, unit: 'SECONDS'
+        echo "completed testing."
       }
     }
   }
