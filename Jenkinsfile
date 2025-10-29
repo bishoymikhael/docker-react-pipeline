@@ -12,19 +12,32 @@ pipeline {
       }
     }
 
-    stage('SAST') {
-      steps {
-        echo "hello from SAST..."
-        sleep time: 3, unit: 'SECONDS'
-        echo "completed SAST."
-      }
-    }
+    stage('Parallelize Build/test and SAST') {
+      parallel {
+        stage('SAST') {
+          steps {
+            echo "hello from SAST..."
+            sleep time: 3, unit: 'SECONDS'
+            echo "completed SAST."
+          }
+        }
 
-    stage('Build') {
-      steps {
-        echo "hello from Build..."
-        sleep time: 3, unit: 'SECONDS'
-        echo "completed Build."
+        stage('build and test') {
+          stage('Build') {
+            steps {
+              echo "hello from Build..."
+              sleep time: 3, unit: 'SECONDS'
+              echo "completed Build."
+            }
+          }
+          stage('unit test') {
+            steps {
+              echo "hello from test..."
+              sleep time: 3, unit: 'SECONDS'
+              echo "completed testing."
+            }
+          }
+        }
       }
     }
 
@@ -36,12 +49,5 @@ pipeline {
       }
     }
 
-    stage('unit test') {
-      steps {
-        echo "hello from test..."
-        sleep time: 3, unit: 'SECONDS'
-        echo "completed testing."
-      }
-    }
-  }
+
 }
