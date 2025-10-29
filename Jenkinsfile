@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('SCM') {
       steps {
-        echo 'Fetching the app data from %params.branch%'
+        echo 'Fetching the app data from ${params.branch}'
       }
     }
 
